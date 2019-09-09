@@ -4,7 +4,7 @@
     <div class="select_timetable">
         <div class="container">
             <div class="description">
-                <p>←取得済み単位数入力に戻る</p>
+                <nuxt-link to="/pre"><p style="color: blue;">←取得済み単位数入力に戻る</p></nuxt-link>
                 <h2>2. 時間割表示</h2>
                 <p>下の時間割表から、今季受講したい講義を選んでください。下のドロップダウンメニューから絞り込みもできます。</p>
                 <select class="form-control" id="exampleFormControlSelect1" v-model="selected_day">

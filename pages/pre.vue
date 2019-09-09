@@ -112,7 +112,26 @@ export default {
         }
     },
     created: function() {
-        
+        if(this.$store.state.acquired_units != null){
+            this.acquired_units = this.$store.state.acquired_units;
+            this.d1 = this.acquired_units["d1"];
+            this.d2 = this.acquired_units["d2"];
+            this.d3 = this.acquired_units["d3"];
+            this.d4 = this.acquired_units["d4"];
+            this.d5 = this.acquired_units["d5"];
+            this.d6 = this.acquired_units["d6"];
+            this.d7 = this.acquired_units["d7"];
+            this.d8 = this.acquired_units["d8"];
+            this.d9 = this.acquired_units["d9"];
+            this.d10 = this.acquired_units["d10"];
+            this.d11 = this.acquired_units["d11"];
+            this.isTapper = this.acquired_units["isTapper"];
+            if(this.isTapper == true){
+                this.d1 -= 4;
+                this.d3 -= 6;
+                this.d5 -= 4;
+            }
+        }
     },
     methods: {
         toTimetableWithUnits() {
@@ -129,7 +148,6 @@ export default {
                 d10: Number(this.d10),
                 d11: Number(this.d11),
                 isTapper: this.isTapper,
-                isTeacher: this.isTeacher
             }
             if(this.isTapper){
                 this.acquired_units["d1"] += 4;
@@ -141,8 +159,7 @@ export default {
             this.$router.push('/main');
         },
         toTimetableWithoutUnits() {
-            let tmp = true;
-            this.$store.commit('notSetAcquiredUnits', tmp);
+            this.$store.commit('notSetAcquiredUnits', true);
         }
     }
 };
