@@ -4,6 +4,7 @@
     <div class="select_timetable">
         <div class="container">
             <div class="description">
+                <p>←取得済み単位数入力に戻る</p>
                 <h2>2. 時間割表示</h2>
                 <p>下の時間割表から、今季受講したい講義を選んでください。下のドロップダウンメニューから絞り込みもできます。</p>
                 <select class="form-control" id="exampleFormControlSelect1" v-model="selected_day">
@@ -40,6 +41,7 @@
                 <p style="margin-top: 10px;">現在の単位数: {{countCredits}}   <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample">現在の単位計算結果を表示</button></p>
                 <div class="collapse" id="collapseExample">
                 <div class="card card-body">
+                    <p v-if="$store.state.is_acquired_skipped" style="color: red;">取得済み単位数が入力されていないので、正常に表示されない可能性があります。</p>
                     <p>基礎科目[外国語]・必修: {{countTotalCredits["d1"]}} / 不足: <span style="color: red;">{{6 - countTotalCredits["d1"]}}</span></p>
                     <p>基礎科目[外国語(英語)]・選択: {{countTotalCredits["d2"]}} / 不足: <span style="color: red;">{{2 - countTotalCredits["d2"]}}</span></p>
                     <p>基礎科目[教養]・選択: {{countTotalCredits["d3"]}} / 不足: <span style="color: red;">{{10 - countTotalCredits["d3"]}}</span></p>
@@ -114,6 +116,9 @@ export default {
         };
     },
     created: function() {
+        if(this.$store.state.acquired_units == null && this.$store.state.is_acquired_skipped == false){
+            this.$router.push('/');
+        }
         const get_timetable_data = this.$axios.$get("/data/61.json").then(response => {
             this.timetable_data = response;
             this.display_timetable_data = this.timetable_data;
@@ -137,7 +142,7 @@ export default {
         },
         countTotalCredits() {
             let total_credits = {"d1": 0,"d2": 0,"d3": 0,"d4": 0,"d5": 0,"d6": 0,"d7": 0,"d8": 0,"d9": 0,"d10": 0,"d11": 0};
-            if(this.$store.state.is_acquired_skipped == false){
+            if(this.$store.state.acquired_units == null && this.$store.state.is_acquired_skipped == false){
                 total_credits["d1"] += Number(this.$store.state.acquired_units["d1"]);
                 total_credits["d2"] += Number(this.$store.state.acquired_units["d2"]);
                 total_credits["d3"] += Number(this.$store.state.acquired_units["d3"]);

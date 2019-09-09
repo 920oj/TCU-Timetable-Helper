@@ -111,6 +111,9 @@ export default {
             acquired_units: null
         }
     },
+    created: function() {
+        
+    },
     methods: {
         toTimetableWithUnits() {
             this.acquired_units = {
