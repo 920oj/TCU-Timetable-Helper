@@ -413,6 +413,7 @@ export default {
             }
             console.log(query);
             this.display_timetable_data = underscore.filter(this.timetable_data,query);
+            console.log(this.display_timetable_data[0]);
         },
         gotoResult() {
             console.log(this.checked_ids);
@@ -420,26 +421,9 @@ export default {
             console.log('追加されました');
         },
         isDisabled(item) {
-            // let a_class = null;
-            // this.selected_date.forEach(function(num){
-            //     if(num == item.date_id || (num == item.cdate_id && 0 != item.cdate_id)){
-            //         if(item.quarter == 3){
-            //             a_class = 'text-decoration: line-through;'
-            //         }
-            //     }
-                // else if(item.quarter == 4){
-                //     if((num == item.date_id || (num == item.cdate_id && 0 != item.cdate_id)) && ((item.quarter == 3) && (item.quarter == 4)) ){
-                //         a_class = 'text-decoration: line-through;'
-                //     }
-                // }
-                // else if(item.quarter == 5){
-                //     if((num == item.date_id || (num == item.cdate_id && 0 != item.cdate_id)) && ((item.quarter == 3) && (item.quarter == 5)) ){
-                //         a_class = 'text-decoration: line-through;'
-                //     }
-                // }
-            // });
-            // return a_class;
-        }
+            // 明日の俺が頑張る
+        },
+
     }
 };
 
