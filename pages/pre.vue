@@ -80,7 +80,7 @@
             <div id="submitBtn">
                 <button type="button" class="btn btn-primary" @click="toTimetableWithUnits">次へ</button>
                 <button type="button" class="btn btn-secondary" @click="toTimetableWithoutUnits">入力せず次へ（自動計算されません）</button>
-                <button type="button" class="btn btn-secondary" @click="ojTest">(デバッグ用)OJの単位</button>
+                <!-- <button type="button" class="btn btn-secondary" @click="ojTest">(デバッグ用)OJの単位</button> -->
             </div>
         </div>
 
