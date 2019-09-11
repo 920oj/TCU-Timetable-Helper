@@ -80,6 +80,7 @@
             <div id="submitBtn">
                 <button type="button" class="btn btn-primary" @click="toTimetableWithUnits">次へ</button>
                 <button type="button" class="btn btn-secondary" @click="toTimetableWithoutUnits">入力せず次へ（自動計算されません）</button>
+                <button type="button" class="btn btn-secondary" @click="ojTest">(デバッグ用)OJの単位</button>
             </div>
         </div>
 
@@ -154,13 +155,31 @@ export default {
                 this.acquired_units["d3"] += 6;
                 this.acquired_units["d5"] += 4;
             }
-            console.log(this.acquired_units);
             this.$store.commit('setAcquiredUnits', this.acquired_units);
             this.$store.commit('notSetAcquiredUnits', false);
             this.$router.push('/main');
         },
         toTimetableWithoutUnits() {
             this.$store.commit('notSetAcquiredUnits', true);
+            this.$router.push('/main');
+        },
+        ojTest() {
+            this.acquired_units = {
+                d1: 2,
+                d2: 2,
+                d3: 10,
+                d4: 9,
+                d5: 0,
+                d6: 0,
+                d7: 4,
+                d8: 4,
+                d9: 4,
+                d10: 16,
+                d11: 2,
+                isTapper: true
+            }
+            this.$store.commit('setAcquiredUnits', this.acquired_units);
+            this.$store.commit('notSetAcquiredUnits', false);
             this.$router.push('/main');
         }
     }
