@@ -453,7 +453,20 @@ export default {
             console.log('追加されました');
         },
         isDisabled(item) {
-            
+            let tmp_css = '';
+            this.disabled_check.forEach(function(num){
+                // console.log(num + 'を処理中……')
+                // console.log(item.name + 'のdisabledは' + item.disabled + 'です')
+                if(item.disabled == num || item.cdisabled == num){
+                    tmp_css = 'text-decoration: line-through;'
+                }
+            });
+            this.checked_ids.forEach(function(num){
+                if(item.id == num){
+                    tmp_css = '';
+                }
+            });
+            return tmp_css;
         },
 
     }
