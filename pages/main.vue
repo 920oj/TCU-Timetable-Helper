@@ -121,7 +121,7 @@ export default {
         if(this.$store.state.acquired_units == null && this.$store.state.is_acquired_skipped == false){
             this.$router.push('/');
         }
-        const get_timetable_data = this.$axios.$get("/data/61.json").then(response => {
+        const get_timetable_data = this.$axios.$get("https://tcu-timetable-helper.netlify.com/data/71.json").then(response => {
             this.timetable_data = response;
             this.display_timetable_data = this.timetable_data;
             if(this.$store.state.plan_units != null){
