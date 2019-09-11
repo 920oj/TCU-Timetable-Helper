@@ -140,8 +140,6 @@ export default {
                 query.id = num;
                 let tmp = underscore.filter(self.timetable_data, query);
                 credits += tmp[0].credits;
-                console.log(String(tmp[0].disabled));
-                console.log(String(tmp[0].disabled).slice(-1));
 
                 // disbaled_checkの処理
                 if(String(tmp[0].disabled).slice(-1) == 3){
@@ -281,12 +279,10 @@ export default {
             if(this.selected_category != 0){
                 query.category = Number(this.selected_category);
             }
-            console.log(query);
             this.display_timetable_data = underscore.filter(this.timetable_data,query);
             console.log(this.display_timetable_data[0]);
         },
         gotoResult() {
-            console.log(this.checked_ids);
             this.$store.commit('setPlanUnits', this.checked_ids);
             this.$store.commit('setTotalUnits', this.tc);
             this.$router.push('/result');
