@@ -113,6 +113,7 @@ export default {
             selected_day: 0,
             selected_quarter: 0,
             selected_category: 0,
+            disabled_check: []
         };
     },
     created: function() {
@@ -128,16 +129,47 @@ export default {
         countCredits() {
             let credits = 0;
             this.selected_date = [];
+            let dis_tmp = []
             const self = this;
             this.checked_ids.forEach(function(num){
                 let query = {};
                 query.id = num;
                 let tmp = underscore.filter(self.timetable_data, query);
                 credits += tmp[0].credits;
-                // self.selected_date.push(tmp[0].date_id);
-                // self.selected_date.push(tmp[0].cdate_id);
+                console.log(String(tmp[0].disabled));
+                console.log(String(tmp[0].disabled).slice(-1));
+
+                // disbaled_checkの処理
+                if(String(tmp[0].disabled).slice(-1) == 3){
+                    dis_tmp.push(tmp[0].disabled);
+                    dis_tmp.push(tmp[0].disabled + 1);
+                    dis_tmp.push(tmp[0].disabled + 2);
+                }
+                else if(String(tmp[0].disabled).slice(-1) == 4){
+                    dis_tmp.push(tmp[0].disabled - 1);
+                    dis_tmp.push(tmp[0].disabled);
+                }
+                else if(String(tmp[0].disabled).slice(-1) == 5){
+                    dis_tmp.push(tmp[0].disabled - 2);
+                    dis_tmp.push(tmp[0].disabled);
+                }
+                if(tmp[0].cdisabled != 0){
+                    if(String(tmp[0].cdisabled).slice(-1) == 3){
+                        dis_tmp.push(tmp[0].cdisabled);
+                        dis_tmp.push(tmp[0].cdisabled + 1);
+                        dis_tmp.push(tmp[0].cdisabled + 2);
+                    }
+                    else if(String(tmp[0].cdisabled).slice(-1) == 4){
+                        dis_tmp.push(tmp[0].cdisabled - 1);
+                        dis_tmp.push(tmp[0].cdisabled);
+                    }
+                    else if(String(tmp[0].cdisabled).slice(-1) == 5){
+                        dis_tmp.push(tmp[0].cdisabled - 2);
+                        dis_tmp.push(tmp[0].cdisabled);
+                    }
+                } 
             })
-            console.log(this.selected_date);
+            self.disabled_check = dis_tmp.filter((x, i, self) => self.indexOf(x) === i);
             return credits;
         },
         countTotalCredits() {
@@ -421,7 +453,7 @@ export default {
             console.log('追加されました');
         },
         isDisabled(item) {
-            // 明日の俺が頑張る
+            
         },
 
     }
