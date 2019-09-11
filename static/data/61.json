@@ -344,7 +344,7 @@
     "code": "yba711303",
     "name": "質的調査演習",
     "date_id": 3,
-    "cdate_id": 3,
+    "cdate_id": 4,
     "compulsory": 2,
     "possible": 2,
     "year": 2019,
@@ -353,7 +353,7 @@
     "credits": 2,
     "category": 8,
     "disabled": 34,
-    "cdisabled": 34,
+    "cdisabled": 44,
     "day": 1
   },
   {

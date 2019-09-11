@@ -73,7 +73,7 @@
                     <tbody>
                         <tr v-for="(item,index) in display_timetable_data" :key="index" :style="isDisabled(item)">
                             <th><input type="checkbox" v-model="checked_ids" :value="item.id" class="check"></th>
-                            <td>{{item.name}}</td>
+                            <td><a :href="setUrl(item)" target="_blank">{{item.name}}</a></td>
                             <td>{{changeClass(item.class)}}</td>
                             <td>{{changePossible(item.possible)}}</td>
                             <td>{{changeQuarter(item.quarter)}}</td>
@@ -174,7 +174,7 @@ export default {
         },
         countTotalCredits() {
             let total_credits = {"d1": 0,"d2": 0,"d3": 0,"d4": 0,"d5": 0,"d6": 0,"d7": 0,"d8": 0,"d9": 0,"d10": 0,"d11": 0};
-            if(this.$store.state.acquired_units == null && this.$store.state.is_acquired_skipped == false){
+            if(this.$store.state.is_acquired_skipped == false){
                 total_credits["d1"] += Number(this.$store.state.acquired_units["d1"]);
                 total_credits["d2"] += Number(this.$store.state.acquired_units["d2"]);
                 total_credits["d3"] += Number(this.$store.state.acquired_units["d3"]);
@@ -231,7 +231,6 @@ export default {
                 }
             });
             if(total_credits["d3"] > 10){
-                console.log("d3が10より大きい")
                 total_credits["11"] += (Number(total_credits["d3"]) - 10)
                 total_credits["d3"] = 10;
             }
@@ -432,6 +431,10 @@ export default {
                     break;       
             }
         },
+        setUrl(item){
+            let url = 'https://websrv.tcu.ac.jp/tcu_web_v3/slbssbdr.do?value(risyunen)=2019&value(semekikn)=1&value(kougicd)=';
+            return url + item.code;
+        },
         refine(){
             let query = {};
             if(this.selected_day != 0){
@@ -455,8 +458,6 @@ export default {
         isDisabled(item) {
             let tmp_css = '';
             this.disabled_check.forEach(function(num){
-                // console.log(num + 'を処理中……')
-                // console.log(item.name + 'のdisabledは' + item.disabled + 'です')
                 if(item.disabled == num || item.cdisabled == num){
                     tmp_css = 'text-decoration: line-through;'
                 }

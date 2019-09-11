@@ -79,7 +79,7 @@
             </div>
             <div id="submitBtn">
                 <button type="button" class="btn btn-primary" @click="toTimetableWithUnits">次へ</button>
-                <nuxt-link to="/main"><button type="button" class="btn btn-secondary" @click="toTimetableWithoutUnits">入力せず次へ（自動計算されません）</button></nuxt-link>
+                <button type="button" class="btn btn-secondary" @click="toTimetableWithoutUnits">入力せず次へ（自動計算されません）</button>
             </div>
         </div>
 
@@ -156,10 +156,12 @@ export default {
             }
             console.log(this.acquired_units);
             this.$store.commit('setAcquiredUnits', this.acquired_units);
+            this.$store.commit('notSetAcquiredUnits', false);
             this.$router.push('/main');
         },
         toTimetableWithoutUnits() {
             this.$store.commit('notSetAcquiredUnits', true);
+            this.$router.push('/main');
         }
     }
 };
