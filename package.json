@@ -15,7 +15,7 @@
     "html2canvas": "^1.0.0-rc.3",
     "nuxt": "^2.0.0",
     "ress": "^1.2.2",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   },
   "devDependencies": {}
 }
