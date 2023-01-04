@@ -13,7 +13,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.6.0",
     "html2canvas": "^1.0.0-rc.3",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.15.8",
     "ress": "^1.2.2",
     "underscore": "^1.9.1"
   },
